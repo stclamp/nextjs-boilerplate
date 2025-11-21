@@ -1,0 +1,42 @@
+{
+  "Auth": {
+    "login": {
+      "title": "Sign in",
+      "or": "Or",
+      "createAccount": "create a new account",
+      "emailLabel": "Email address",
+      "passwordLabel": "Password",
+      "submit": "Sign in",
+      "invalidEmail": "Invalid email address",
+      "passwordMin": "Password must be at least 6 characters",
+      "error": "Invalid email or password",
+      "unexpectedError": "An unexpected error occurred"
+    },
+    "register": {
+      "title": "Create an account",
+      "or": "Or",
+      "signIn": "sign in to your account",
+      "emailLabel": "Email address",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "submit": "Sign up",
+      "passwordMismatch": "Passwords do not match",
+      "success": "Registration successful! Please log in."
+    }
+  },
+  "Home": {
+    "title": "Next.js Boilerplate",
+    "description": "Production-ready boilerplate with NextAuth.js, Tailwind CSS, and TypeScript.",
+    "getStarted": "Get Started"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {name}!",
+    "logout": "Sign out"
+  },
+  "Error": {
+    "notFound": "Page not found",
+    "generic": "Something went wrong",
+    "goHome": "Go home"
+  }
+}
