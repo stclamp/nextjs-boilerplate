@@ -7,24 +7,27 @@ import * as z from 'zod';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
 import axios from 'axios';
+import {useTranslations} from 'next-intl';
 
-const registerSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+const createRegisterSchema = (t: any) => z.object({
+  email: z.string().email(t('invalidEmail')),
+  password: z.string().min(6, t('passwordMin')),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: t('passwordMismatch'),
   path: ['confirmPassword'],
 });
 
-type RegisterFormData = z.infer<typeof registerSchema>;
-
 export default function RegisterForm() {
   const router = useRouter();
+  const t = useTranslations('Auth.register');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const registerSchema = createRegisterSchema(t);
+  type RegisterFormData = z.infer<typeof registerSchema>;
 
   const {
     register,
@@ -65,11 +68,11 @@ export default function RegisterForm() {
   return (
     <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
       <div className="text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900">Create an account</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
         <p className="mt-2 text-sm text-gray-600">
-          Already have an account?{' '}
+          {t('or')}{' '}
           <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
-            Sign in
+            {t('signIn')}
           </Link>
         </p>
       </div>
@@ -77,19 +80,19 @@ export default function RegisterForm() {
       <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <Input
-            label="Email address"
+            label={t('emailLabel')}
             type="email"
             {...register('email')}
             error={errors.email?.message}
           />
           <Input
-            label="Password"
+            label={t('passwordLabel')}
             type="password"
             {...register('password')}
             error={errors.password?.message}
           />
           <Input
-            label="Confirm Password"
+            label={t('confirmPasswordLabel')}
             type="password"
             {...register('confirmPassword')}
             error={errors.confirmPassword?.message}
@@ -103,7 +106,7 @@ export default function RegisterForm() {
         )}
 
         <Button type="submit" className="w-full" isLoading={isLoading}>
-          Register
+          {t('submit')}
         </Button>
       </form>
     </div>

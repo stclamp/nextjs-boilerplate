@@ -1,0 +1,42 @@
+{
+  "Auth": {
+    "login": {
+      "title": "Вхід",
+      "or": "Або",
+      "createAccount": "створити новий акаунт",
+      "emailLabel": "Електронна пошта",
+      "passwordLabel": "Пароль",
+      "submit": "Увійти",
+      "invalidEmail": "Невірна адреса електронної пошти",
+      "passwordMin": "Пароль повинен містити не менше 6 символів",
+      "error": "Невірна пошта або пароль",
+      "unexpectedError": "Сталася непередбачена помилка"
+    },
+    "register": {
+      "title": "Створити акаунт",
+      "or": "Або",
+      "signIn": "увійти в свій акаунт",
+      "emailLabel": "Електронна пошта",
+      "passwordLabel": "Пароль",
+      "confirmPasswordLabel": "Підтвердіть пароль",
+      "submit": "Зареєструватися",
+      "passwordMismatch": "Паролі не співпадають",
+      "success": "Реєстрація успішна! Будь ласка, увійдіть."
+    }
+  },
+  "Home": {
+    "title": "Next.js Boilerplate",
+    "description": "Готовий до продакшену шаблон з NextAuth.js, Tailwind CSS та TypeScript.",
+    "getStarted": "Почати"
+  },
+  "Dashboard": {
+    "title": "Панель керування",
+    "welcome": "З поверненням, {name}!",
+    "logout": "Вийти"
+  },
+  "Error": {
+    "notFound": "Сторінку не знайдено",
+    "generic": "Щось пішло не так",
+    "goHome": "На головну"
+  }
+}

@@ -8,19 +8,22 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
+import {useTranslations} from 'next-intl';
 
-const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+const createLoginSchema = (t: any) => z.object({
+  email: z.string().email(t('invalidEmail')),
+  password: z.string().min(6, t('passwordMin')),
 });
-
-type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const router = useRouter();
+  const t = useTranslations('Auth.login');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const loginSchema = createLoginSchema(t);
+  type LoginFormData = z.infer<typeof loginSchema>;
 
   const {
     register,
@@ -50,7 +53,7 @@ export default function LoginForm() {
         router.refresh();
       }
     } catch (err) {
-      setError('An unexpected error occurred');
+      setError(t('unexpectedError'));
     } finally {
       setIsLoading(false);
     }
@@ -59,11 +62,11 @@ export default function LoginForm() {
   return (
     <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
       <div className="text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900">Sign in</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
         <p className="mt-2 text-sm text-gray-600">
-          Or{' '}
+          {t('or')}{' '}
           <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
-            create a new account
+            {t('createAccount')}
           </Link>
         </p>
       </div>
@@ -71,13 +74,13 @@ export default function LoginForm() {
       <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <Input
-            label="Email address"
+            label={t('emailLabel')}
             type="email"
             {...register('email')}
             error={errors.email?.message}
           />
           <Input
-            label="Password"
+            label={t('passwordLabel')}
             type="password"
             {...register('password')}
             error={errors.password?.message}
@@ -91,7 +94,7 @@ export default function LoginForm() {
         )}
 
         <Button type="submit" className="w-full" isLoading={isLoading}>
-          Sign in
+          {t('submit')}
         </Button>
       </form>
     </div>
