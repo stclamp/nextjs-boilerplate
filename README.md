@@ -37,7 +37,7 @@ A production-ready Next.js boilerplate with custom backend authentication, refre
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/stclamp/nextjs-boilerplate.git
 cd nextjs-boilerplate
 ```
 
